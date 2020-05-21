@@ -253,3 +253,5 @@ int crearPrestamo(ePrestamo* listaPrestamo, int tamp, eCliente* listaClientes, i
  * @return Retorna un entero. -1 si no logro encontrar un lugar disponible. Valor con subindice donde se puede generar un prestamo nuevo.
  */
 int buscarLugarPrestamoLibre(ePrestamo* listaPrestamo,int tamp);
+
+void mostrar12CuotasSaldados(ePrestamo* listaPrestamos, int tamp, eCliente* listaClientes, int tamc);

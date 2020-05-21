@@ -373,8 +373,9 @@ int menu()
 	printf("8-Imprimir prestamos\n");
 	printf("9-Informar clientes con mas activos y pasivos\n");
 	printf("10-Informar prestamos si son activos y mayores a 1000\n");
-
-	printf("\n11-Salir\n");
+	printf("11-Informar prestamos saldados de 12 cuotas\n");
+	printf("12-Informar prestamos por cuotas ingresadas\n");
+	printf("\n13-Salir\n");
 
 	printf("\nSeleccione una opcion: \n");
 	scanf("%d",&retorno);

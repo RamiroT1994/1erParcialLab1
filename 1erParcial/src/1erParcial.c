@@ -100,6 +100,20 @@ int main(void) {
 			system("cls");
 			break;
 		case 11:
+			system("cls");
+			mostrar12CuotasSaldados(listaPrestamos,TAMP,listaClientes,TAMC);
+			printf("\n");
+			system("pause");
+			system("cls");
+			break;
+		case 12:
+			system("cls");
+			mostrarPrestamosPorCuotas(listaPrestamos,TAMP,listaClientes,TAMC);
+			printf("\n");
+			system("pause");
+			system("cls");
+			break;
+		case 13:
 			seguir = 'n';
 			break;
 		default:

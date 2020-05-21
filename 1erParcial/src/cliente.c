@@ -1081,3 +1081,73 @@ int buscarLugarPrestamoLibre(ePrestamo* listaPrestamo,int tamp)
 	return retorno;
 
 }
+
+void mostrar12CuotasSaldados(ePrestamo* listaPrestamos, int tamp, eCliente* listaClientes, int tamc)
+{
+	int i,j;
+
+	if(listaPrestamos != NULL && tamp > 0 && listaClientes != NULL && tamc > 0)
+	{
+		for(i=0;i<tamp;i++)
+		{
+			if(listaPrestamos[i].estado == 2 && listaPrestamos[i].cuotas == 12)
+			{
+				for(j=0;j<tamc;j++)
+				{
+					if(listaPrestamos[i].idCliente == listaClientes[j].id)
+					{
+						mostrarUnPrestamoConCuil(listaPrestamos[i],listaClientes[j]);
+					}
+				}
+			}
+		}
+	}
+}
+
+void mostrarPrestamosPorCuotas(ePrestamo* listaPrestamos, int tamp, eCliente* listaClientes, int tamc)
+{
+	int i,j;
+	int auxCuotas;
+	int auxRetorno;
+	int flagHeaders = 0;
+
+	char auxHeader0 [20] = {"ID PRESTAMO"};
+	char auxHeader4 [20] = {"CUIL CLIENTE"};
+	char auxHeader1 [20] = {"IMPORTE"};
+	char auxHeader2 [20] = {"CUOTAS"};
+	char auxHeader3 [20] = {"ESTADO"};
+
+	if(listaPrestamos != NULL && tamp > 0 && listaClientes != NULL && tamc > 0)
+	{
+		fflush(stdin);
+		auxRetorno = utn_getNumero(&auxCuotas,"\nIngrese cantidad de cuotas a buscar(3-6-12-18): ","\nError en el ingreso del dato.\n",3,18,4);
+
+		if( (auxRetorno != -1 && auxCuotas == 3) || (auxRetorno != -1 && auxCuotas == 6) || (auxRetorno != -1 && auxCuotas == 12) || (auxRetorno != -1 && auxCuotas == 18) )
+		{
+			for(i=0;i<tamp;i++)
+			{
+				if(listaPrestamos[i].estado != 1 && listaPrestamos[i].cuotas == auxCuotas)
+				{
+					if(flagHeaders == 0)
+					{
+						printf("%10s %15s %11s %10s %9s\n\n",auxHeader0,auxHeader4,auxHeader1,auxHeader2,auxHeader3);
+						flagHeaders = 1;
+					}
+
+					for(j=0;j<tamc;j++)
+					{
+						if(listaPrestamos[i].idCliente == listaClientes[j].id)
+						{
+								mostrarUnPrestamoConCuil(listaPrestamos[i],listaClientes[j]);
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			printf("\n\nNo se ha podido mostrar. Error en el ingreso de las cuotas\n\n");
+
+		}
+	}
+}
